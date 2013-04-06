@@ -1,0 +1,8 @@
+package megateam.megamanxrpg.common;
+
+public class CommonProxy {
+  public void registerRenders() {
+		
+	}
+
+}
