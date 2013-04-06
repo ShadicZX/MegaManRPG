@@ -1,9 +1,11 @@
 package megateam.megamanxrpg;
 
-public class ClientProxy extends ServerProxy {
-  
+import megateam.megamanxrpg.common.CommonProxy;
+
+public class ClientProxy extends CommonProxy {
+	
 	@Override
-	public void registerRenderThings()
+	public void registerRenders()
 	{
 		
 	}
