@@ -1,8 +1,8 @@
-package megateam.megamanxrpg.common;
+package megateam.megamanxrpg;
 
 public class ServerProxy {
 	public void registerRenderThings()
 	{
-		
+
 	}
 }

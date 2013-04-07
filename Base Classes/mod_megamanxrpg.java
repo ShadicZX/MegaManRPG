@@ -1,8 +1,10 @@
 package megateam.megamanxrpg;
 
-import megateam.megamanxrpg.common.CommonProxy;
 import net.minecraft.block.Block;
+import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -29,24 +31,25 @@ public class mod_megamanxrpg
    	   public static CommonProxy proxy;
        
    	   public static Block EnergyOre;
+   	   public static Item XBlade;
+   	   
+   	   static EnumToolMaterial toolEnergy = net.minecraftforge.common.EnumHelper.addToolMaterial(null, 8, 1000, 15F, 1, 0);
    	   
        @PreInit
-       public void load(FMLPreInitializationEvent preevent)
+       public void preload(FMLPreInitializationEvent preevent)
        {
-    	   
+    	   EnergyOre = new EnergyOre(538, 0).setUnlocalizedName("Condensed Light Particles Ore");
+    	   XBlade = new XBlade(539, toolEnergy).setUnlocalizedName("Condensed Light Particle Sword");
        }
       
        @Init
        public void load(FMLInitializationEvent event)
        {
-    	EnergyOre = (new EnergyOre(538, 0)).setUnlocalizedName("Condensed Light Particles Ore");
-   		LanguageRegistry.addName(EnergyOre, "Condensed Light Particles Ore");
-   		MinecraftForge.setBlockHarvestLevel(EnergyOre, "pickaxe", 3);
-   		GameRegistry.registerBlock(EnergyOre);
+    	   	proxy.registerBlocks();
        }
        
        @PostInit
-       public void load(FMLPostInitializationEvent postevent)
+       public void postload(FMLPostInitializationEvent postevent)
        {
     	   
        }
