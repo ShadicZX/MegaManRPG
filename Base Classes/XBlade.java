@@ -5,6 +5,7 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Handler;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
@@ -25,7 +26,11 @@ public class XBlade extends ItemSword {
 	public XBlade(int id, EnumToolMaterial mat) {
 		super(id, mat);
 	}
-
+	
+	public void updateIcons(IconRegister iconRegister)
+	{
+	         iconIndex = iconRegister.registerIcon("megamanxrpg:XBlade");
+	}
 
 	@Override
 	public boolean onLeftClickEntity(final ItemStack stack, final EntityPlayer player, Entity entity)

@@ -1,6 +1,9 @@
 package megateam.megamanxrpg;
 
+import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 public class ClientProxy extends CommonProxy {
@@ -8,5 +11,9 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenders()
 	{
 		
+	}
+	public void registerHandlers()
+	{
+		KeyBindingRegistry.registerKeyBinding(new MyKeyHandler());
 	}
 }

@@ -32,6 +32,7 @@ public class mod_megamanxrpg
        
    	   public static Block EnergyOre;
    	   public static Item XBlade;
+   	   public static Item ZBlade;
    	   
    	   static EnumToolMaterial toolEnergy = net.minecraftforge.common.EnumHelper.addToolMaterial(null, 8, 1000, 15F, 1, 0);
    	   
@@ -39,13 +40,17 @@ public class mod_megamanxrpg
        public void preload(FMLPreInitializationEvent preevent)
        {
     	   EnergyOre = new EnergyOre(538, 0).setUnlocalizedName("Condensed Light Particles Ore");
-    	   XBlade = new XBlade(539, toolEnergy).setUnlocalizedName("Condensed Light Particle Sword");
+    	   XBlade = new XBlade(539, toolEnergy).setUnlocalizedName("Condensed Light Particle XBlade");
+    	   ZBlade = new ZBlade(540, toolEnergy).setUnlocalizedName("Condensed Light Particle ZBlade");
        }
       
        @Init
        public void load(FMLInitializationEvent event)
        {
     	   	proxy.registerBlocks();
+    	   	proxy.addNames();
+    	   	proxy.registerHandlers();
+    	   	proxy.registerRenders();
        }
        
        @PostInit
