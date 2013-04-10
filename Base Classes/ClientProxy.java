@@ -14,6 +14,6 @@ public class ClientProxy extends CommonProxy {
 	}
 	public void registerHandlers()
 	{
-		KeyBindingRegistry.registerKeyBinding(new MyKeyHandler());
+		TickRegistry.registerTickHandler(new MyPlayerHandler(), Side.CLIENT);
 	}
 }

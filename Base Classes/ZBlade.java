@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -40,4 +41,14 @@ public class ZBlade extends ItemSword{
 	{
 		return false;
 	}
+	
+	@Override
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
+
+        if (!world.isRemote) {
+            entityPlayer.openGui(mod_megamanxrpg.playerJoinedGui, 1, entityPlayer.worldObj, (int) entityPlayer.posX, (int) entityPlayer.posY, (int) entityPlayer.posZ);
+        }
+
+        return itemStack;
+    }
 }

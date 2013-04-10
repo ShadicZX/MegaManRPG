@@ -49,10 +49,10 @@ public class CommonProxy implements IGuiHandler{ //THIS IS IMPORTANT, CANNOT BE 
 	}
 	
 	public void registerRenders() {
-			MinecraftForge.EVENT_BUS.register(new DoubleJumpEventHook());
 	}
 	
 	public void registerHandlers()
 	{
+		TickRegistry.registerTickHandler(new MyPlayerHandler(), Side.SERVER);
 	}
 }

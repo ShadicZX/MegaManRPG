@@ -1,6 +1,7 @@
 package megateam.megamanxrpg;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
