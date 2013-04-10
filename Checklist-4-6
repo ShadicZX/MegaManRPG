@@ -1,10 +1,8 @@
 TODO
 1. Create the Triple Slash
 2. Modify X saber to do the following
-  One slash per 2 seconds
   One midair slash
   Moderate range, semi-weak.
 3. Make a class select system, where the player can choose between Zero aand X.
 4. Give the select class the select sabers.
-5. Zero double-jump
 6. Enemy Kill-Count System to use for upgrades at a shop.
