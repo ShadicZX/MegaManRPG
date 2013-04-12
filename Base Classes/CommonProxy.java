@@ -36,13 +36,13 @@ public class CommonProxy implements IGuiHandler{ //THIS IS IMPORTANT, CANNOT BE 
 	}
 	
 	public void registerBlocks(){ //For registering Blocks
-		GameRegistry.registerBlock(mod_megamanxrpg.EnergyOre, "Energy Ore");
+		GameRegistry.registerBlock(megamanxrpg.EnergyOre, "Energy Ore");
 	}
 	
 	public void addNames(){ //For adding Item's ingame names
-		LanguageRegistry.addName(mod_megamanxrpg.EnergyOre, "Energy Ore");
-		LanguageRegistry.addName(mod_megamanxrpg.ZBlade, "ZSaber");
-		LanguageRegistry.addName(mod_megamanxrpg.XBlade, "XBlade");
+		LanguageRegistry.addName(megamanxrpg.EnergyOre, "Energy Ore");
+		LanguageRegistry.addName(megamanxrpg.ZBlade, "ZSaber");
+		LanguageRegistry.addName(megamanxrpg.XBlade, "XBlade");
 	}
 	
 	public void addRecipes(){ //For adding your Item's recipes

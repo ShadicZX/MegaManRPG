@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.Mod;
@@ -21,12 +22,12 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid = "MegamanXRPG", name = "Megaman X RPG", version = "0.0.1 Alpha")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class mod_megamanxrpg
+public class megamanxrpg
 {
        public static final String modid = "mod_megamanxrpg";
        
        @Instance("MegamanXRPG")
-   	   public static mod_megamanxrpg instance;
+   	   public static megamanxrpg instance;
    	
    	   @SidedProxy(clientSide="megateam.megamanxrpg.ClientProxy", serverSide="megateam.megamanxrpg.common.CommonProxy")
    	   public static CommonProxy proxy;
@@ -35,11 +36,12 @@ public class mod_megamanxrpg
    	   public static Item XBlade;
    	   public static Item ZBlade;
    	   
-   	   static EnumToolMaterial toolEnergy = net.minecraftforge.common.EnumHelper.addToolMaterial(null, 8, 1000, 15F, 1, 0);
+   	   static EnumToolMaterial toolEnergy;
    	   
        @PreInit
        public void preload(FMLPreInitializationEvent preevent)
        {
+    	   toolEnergy = net.minecraftforge.common.EnumHelper.addToolMaterial("Energy", 8, 1000, 15F, 1, 0);
     	   EnergyOre = new EnergyOre(538, 0).setUnlocalizedName("Condensed Light Particles Ore");
     	   XBlade = new XBlade(539, toolEnergy).setUnlocalizedName("Condensed Light Particle XBlade");
     	   ZBlade = new ZBlade(540, toolEnergy).setUnlocalizedName("Condensed Light Particle ZBlade");

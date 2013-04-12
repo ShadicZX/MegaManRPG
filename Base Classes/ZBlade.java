@@ -12,13 +12,15 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.src.ModLoader;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 public class ZBlade extends ItemSword{
 	int tickssinceuse = 0;
 	boolean cantripleslash = false;
-	
-	EntityPlayer player = ModLoader.getMinecraftInstance().thePlayer;
+	public static DamageSource blades;
+	protected static Entity entity;
+	protected static EntityPlayer player;
 	
 	Timer t = new Timer();
 	
@@ -26,27 +28,65 @@ public class ZBlade extends ItemSword{
 		super(id, mat);
 	}
 	
-	@Override
-	public void onUpdate(ItemStack stack, World world, final Entity entity, int par4, boolean par5) {
-		t.schedule(new TimerTask(){
-			@Override
-			public void run(){
-				tickssinceuse++;
-			}
-		}, 50);
-	}
 	
 	@Override
-	public boolean onLeftClickEntity(final ItemStack stack, final EntityPlayer player, final Entity entity)
+	public boolean onLeftClickEntity(final ItemStack stack, final EntityPlayer fplayer, final Entity fentity)
 	{
+		MyPlayerHandler.entitySelected = true;
+		this.player = fplayer;
+		this.entity = fentity;
+//		if(MyPlayerHandler.canUseAbility == true){
+//			MyPlayerHandler.canUseAbility = false;
+//			MyPlayerHandler.swings = 0;
+//			MyPlayerHandler.ticks = 0;
+//			player.sendChatToPlayer("You used the Z-Saber \"Triple Slash\" ability!");
+//			entity.hurtResistantTime = 0;
+//			
+//			MyPlayerHandler.displayedMsg = false;
+//			new Timer().schedule(new TimerTask(){
+//				@Override
+//				public void run(){
+//					entity.attackEntityFrom(DamageSource.generic, 10);
+//				}
+//			}, 0);
+//			new Timer().schedule(new TimerTask(){
+//				@Override
+//				public void run(){
+//					entity.attackEntityFrom(DamageSource.generic, 10);
+//				}
+//			}, 500);
+//			new Timer().schedule(new TimerTask(){
+//				@Override
+//				public void run(){
+//					entity.attackEntityFrom(DamageSource.generic, 10);
+//				}
+//			}, 1000);
+//			new Timer().schedule(new TimerTask(){
+//				@Override
+//				public void run(){
+//					MyPlayerHandler.displayedMsg = false;
+//					MyPlayerHandler.canUseAbility = false;
+//					MyPlayerHandler.swings = 0;
+//					MyPlayerHandler.ticks = 0;
+//				}
+//			}, 1200);
+//		}
+		
 		return false;
+	}
+	
+	public static Entity getEntity(){
+		return entity;
+	}
+	
+	public static EntityPlayer getEntityPlayer(){
+		return player;
 	}
 	
 	@Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
 
         if (!world.isRemote) {
-            entityPlayer.openGui(mod_megamanxrpg.playerJoinedGui, 1, entityPlayer.worldObj, (int) entityPlayer.posX, (int) entityPlayer.posY, (int) entityPlayer.posZ);
         }
 
         return itemStack;
