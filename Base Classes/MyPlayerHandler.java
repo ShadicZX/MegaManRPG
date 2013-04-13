@@ -9,6 +9,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.EnumSkyBlock;
+import net.minecraft.world.World;
 
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
@@ -26,8 +28,11 @@ public class MyPlayerHandler implements ITickHandler
 	protected static boolean canUseAbility = false;
 	protected static int ticks = 0;
 	protected static int swings = 0;
-	public static boolean entitySelected = false;
+	protected static int repairTicks = 0;
+	public static boolean ZEntitySelected = false;
+	public static boolean XEntitySelected = false;
 	private boolean hasJumped = false;
+	private World world;
 	private void playerTick(final EntityPlayer player)
 	{
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && (player.isJumping || player.isAirBorne) && player.motionY < 0.07 && !hasJumped)
@@ -49,7 +54,8 @@ public class MyPlayerHandler implements ITickHandler
 
 		if(player.getCurrentEquippedItem() != null){
 			if(player.getCurrentEquippedItem().itemID == megamanxrpg.ZBlade.itemID){
-				if(player.swingProgressInt == 3){
+				ticks++;
+				if(player.swingProgressInt == 3 && ZEntitySelected == true){
 					swings++;
 				}
 				if(ticks > 200){
@@ -59,8 +65,9 @@ public class MyPlayerHandler implements ITickHandler
 					ticks = 0;
 					canUseAbility = false;
 				}
-				if(swings > 2 && ticks < 400){
+				if(swings == 3 && ticks < 400){
 					canUseAbility = true;
+					ZEntitySelected = false;
 					if(displayedMsg == true){
 						
 					}
@@ -69,17 +76,36 @@ public class MyPlayerHandler implements ITickHandler
 						displayedMsg = true;
 					}
 				}
-				if(canUseAbility == true && entitySelected == true){
+				if(canUseAbility == true && ZEntitySelected == true){
 					Ability();
 				}
-				ticks++;
 				if(player.getCurrentEquippedItem().isItemDamaged() == true){
 					player.getCurrentEquippedItem().setItemDamage(0);
 				}
 			}
+			if(player.getCurrentEquippedItem().itemID == megamanxrpg.XBlade.itemID){
+				repairTicks++;
+				if(repairTicks == 2){
+					if(player.getCurrentEquippedItem().isItemDamaged() == true){
+						player.getCurrentEquippedItem().setItemDamage(player.getCurrentEquippedItem().getItemDamage() - 50);
+					}
+					repairTicks = 0;
+				}
+				if(player.getCurrentEquippedItem().isItemDamaged() == false && XEntitySelected == true){
+					Entity entity = XBlade.getEntity();
+					entity.attackEntityFrom(DamageSource.generic, 5);
+					new Timer().schedule(new TimerTask(){
+						@Override
+						public void run(){
+							XEntitySelected = false;
+							player.getCurrentEquippedItem().setItemDamage(950);
+						}
+					}, 30);
+				}
+			}
 		}
 	}
-
+	
 	private int abilityTicks = 0;
 	private void Ability() {
 		Entity entity = ZBlade.getEntity();
@@ -103,7 +129,7 @@ public class MyPlayerHandler implements ITickHandler
 			canUseAbility = false;
 			swings = 0;
 			ticks = 0;
-			entitySelected = false;
+			ZEntitySelected = false;
 			ZBlade.entity = null;
 			ZBlade.player = null;
 			displayedMsg = false;

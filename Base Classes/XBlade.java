@@ -17,6 +17,9 @@ import net.minecraft.world.World;
 public class XBlade extends ItemSword {
 	int i = 0;
 
+	protected static Entity entity;
+	protected static EntityPlayer player;
+	
 	private int x;
 	int increase = 100;
 	int index = 1;
@@ -33,138 +36,19 @@ public class XBlade extends ItemSword {
 	}
 
 	@Override
-	public boolean onLeftClickEntity(final ItemStack stack, final EntityPlayer player, Entity entity)
+	public boolean onLeftClickEntity(final ItemStack stack, final EntityPlayer fplayer, Entity fentity)
 	{
-		if(stack.isItemDamaged() == false){
-			t.schedule(new TimerTask(){
-				@Override
-				public void run(){
-					stack.setItemDamage(950);
-					fix(stack);
-				}
-			}, 10);
-			return false;
-		}
-		else{
-			return true;
-		}
+		MyPlayerHandler.XEntitySelected = true;
+		this.entity = fentity;
+		this.player = fplayer;
+		return false;
 	}
-
-
-	protected void fix(final ItemStack stack) {
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(900);
-			}
-		}, 100);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(850);
-			}
-		}, 200);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(800);
-			}
-		}, 300);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(750);
-			}
-		}, 400);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(700);
-			}
-		}, 500);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(650);
-			}
-		}, 600);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(600);
-			}
-		}, 700);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(550);
-			}
-		}, 800);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(500);
-			}
-		}, 900);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(450);
-			}
-		}, 1000);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(400);
-			}
-		}, 1100);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(350);
-			}
-		}, 1200);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(300);
-			}
-		}, 1300);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(250);
-			}
-		}, 1400);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(200);
-			}
-		}, 1500);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(150);
-			}
-		}, 1600);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(100);
-			}
-		}, 1700);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(50);
-			}
-		}, 1900);
-		new Timer().schedule(new TimerTask(){
-			@Override
-			public void run(){
-				stack.setItemDamage(0);
-			}
-		}, 2000);
+	
+	public static Entity getEntity(){
+		return entity;
+	}
+	
+	public static EntityPlayer getEntityPlayer(){
+		return player;
 	}
 }

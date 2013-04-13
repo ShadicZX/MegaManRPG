@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,11 +29,15 @@ public class ZBlade extends ItemSword{
 		super(id, mat);
 	}
 	
+	public void updateIcons(IconRegister iconRegister)
+	{
+	         iconIndex = iconRegister.registerIcon("megamanxrpg:ZSaber");
+	}
 	
 	@Override
 	public boolean onLeftClickEntity(final ItemStack stack, final EntityPlayer fplayer, final Entity fentity)
 	{
-		MyPlayerHandler.entitySelected = true;
+		MyPlayerHandler.ZEntitySelected = true;
 		this.player = fplayer;
 		this.entity = fentity;
 //		if(MyPlayerHandler.canUseAbility == true){
